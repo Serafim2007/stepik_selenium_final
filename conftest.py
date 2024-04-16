@@ -13,7 +13,7 @@ def browser(request):
     user_language = request.config.getoption("language")
     options = Options()
     options.add_experimental_option('prefs', {'intl.accept_languages': user_language})
-    if user_language != None:
+    if user_language is not None:
         print(f"\nstart chrome browser with language {user_language}")
         browser = webdriver.Chrome(options=options)
     else:
