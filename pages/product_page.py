@@ -37,11 +37,12 @@ class ProductPage(BasePage):
         assert self.is_element_present(*ProductPageLocators.PRODUCT_MESSAGE), "Product message is not presented"
 
     def should_be_correct_product(self):
-        assert "The shellcoder's handbook" in self.browser.find_element(*ProductPageLocators.CORRECT_PRODUCT).text, \
-            "Product is incorrect"
+        assert (self.browser.find_element(*ProductPageLocators.ACTUAL_PRODUCT).text in
+                self.browser.find_element(*ProductPageLocators.CORRECT_PRODUCT).text), "Product is incorrect"
 
     def should_be_price_message(self):
         assert self.is_element_present(*ProductPageLocators.PRICE_MESSAGE), "Price message is not presented"
 
     def should_be_correct_price(self):
-        assert "9,99" in self.browser.find_element(*ProductPageLocators.CORRECT_PRICE).text, "Price is incorrect"
+        assert (self.browser.find_element(*ProductPageLocators.ACTUAL_PRICE).text in
+                self.browser.find_element(*ProductPageLocators.CORRECT_PRICE).text), "Price is incorrect"
