@@ -11,3 +11,31 @@ def test_guest_can_add_product_to_basket(browser, promo_offer):
     page.add_to_basket()
     product_page = ProductPage(browser, browser.current_url)
     product_page.should_be_product_page()
+
+
+@pytest.mark.xfail(reason="need for exercise")
+def test_guest_cant_see_success_message_after_adding_product_to_basket(browser):
+    link = "https://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer1"
+    page = ProductPage(browser, link)
+    page.open()
+    page.add_to_basket()
+    product_page = ProductPage(browser, browser.current_url)
+    product_page.should_not_be_success_message()
+
+
+def test_guest_cant_see_success_message(browser):
+    link = "https://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer1"
+    page = ProductPage(browser, link)
+    page.open()
+    product_page = ProductPage(browser, browser.current_url)
+    product_page.should_not_be_success_message()
+
+
+@pytest.mark.xfail(reason="need for exercise")
+def test_message_disappeared_after_adding_product_to_basket(browser):
+    link = "https://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer1"
+    page = ProductPage(browser, link)
+    page.open()
+    page.add_to_basket()
+    product_page = ProductPage(browser, browser.current_url)
+    product_page.should_be_disappeared_message()
