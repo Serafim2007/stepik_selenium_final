@@ -45,3 +45,11 @@ class ProductPage(BasePage):
     def should_be_correct_price(self):
         assert (self.browser.find_element(*ProductPageLocators.ACTUAL_PRICE).text ==
                 self.browser.find_element(*ProductPageLocators.CORRECT_PRICE).text), "Price is incorrect"
+
+    def should_not_be_success_message(self):
+        assert self.is_not_element_present(*ProductPageLocators.PRODUCT_MESSAGE), \
+            "Success message is presented, but should not be"
+
+    def should_be_disappeared_message(self):
+        assert self.is_disappeared(*ProductPageLocators.PRODUCT_MESSAGE), \
+            "Success message is not disappeared, but should be"
